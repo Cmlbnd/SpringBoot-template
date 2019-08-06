@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: java-multi-thread
+  namespace: backend
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target:  /
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              serviceName: java-multi-thread
+              servicePort: 8080
+            path: /java-multi-thread/

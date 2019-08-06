@@ -1,0 +1,42 @@
+#!/bin/bash
+
+red=`tput setaf 1`
+green=`tput setaf 2`
+reset=`tput sgr0`
+echo "${green}Deleting codestandards-java repo.${reset}"
+rm -rf code-standards-java
+
+echo "${green}Cloning the code-standards-java repository for latest changes.${reset}"
+git clone https://github.com/Cmlbnd/JavaCodeFormatSample.git
+
+CHECKTYLE_DIFFCOMMAND="diff code-standards-java/checkstyle.xml config/checkstyle/checkstyle.xml"
+$CHECKTYLE_DIFFCOMMAND
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+ echo "${red}The checkstyle configuration has been changed on code-standards repo. Please copy the latest changes from code-standards-java repo which has been cloned locally.${reset}"
+ exit 1
+fi
+
+CHECKTYLE_DIFFCOMMAND="diff code-standards-java/CodeStyle.xml .idea/codeStyles/Project.xml"
+$CHECKTYLE_DIFFCOMMAND
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+ echo "${red}The intellij codestyle configuration has changed on code-standards repo. Please copy the codestyle to .idea/codeStyles folder from code-standards-java repo which has been cloned locally.${reset}"
+ exit 1
+fi
+
+rm -rf code-standards-java
+
+CMD="./gradlew build"
+# Check if we actually have commits to push
+commits=`git log @{u}..`
+if [ -z "$commits" ]; then
+ exit 0
+fi
+$CMD
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+ echo "failed $CMD"
+ exit 1
+fi
+exit 0
