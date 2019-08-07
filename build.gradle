@@ -23,7 +23,7 @@ apply plugin: 'checkstyle'
 apply plugin: 'jacoco'
 
 group = 'com.sample'
-version = 1
+version = getVersion()
 
 description = "java-multi-thread"
 

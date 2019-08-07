@@ -1,6 +1,6 @@
 package com.sample.controller;
 
-import com.sample.service.OptimizationInputService;
+import com.sample.service.SampleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -30,11 +30,11 @@ public class SampleController {
   public @ResponseBody
   ResponseEntity doGetJSON(
       @RequestParam(value = "Date") String param1,
-      @RequestParam(value = "Time") String parm2,
+      @RequestParam(value = "Time") String param2)
       throws Exception {
 
 
-    String output = sampleManager.getJSON(param1, param2);
+    String output = sampleService.getJSON(param1, param2);
     
     return new ResponseEntity<>(output, HttpStatus.OK);
   }

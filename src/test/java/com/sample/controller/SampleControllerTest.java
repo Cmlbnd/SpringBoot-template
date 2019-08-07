@@ -1,6 +1,7 @@
 package com.sample.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -19,11 +20,12 @@ import org.springframework.test.web.servlet.MvcResult;
 @WebMvcTest(SampleControllerTest.class)
 public class SampleControllerTest {
 
-  @Autowired private MockMvc mockMvc;
+  @Autowired
+  private MockMvc mockMvc;
 
   @Test
   public void test1() throws Exception {
-    assertEquals(true)
-  
-  
+    assert(true);
+  }
+
 }

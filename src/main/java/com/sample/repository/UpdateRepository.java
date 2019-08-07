@@ -1,6 +1,6 @@
-package com.sample.repository.backend;
+package com.sample.repository;
 
-import com.sample.entity.backend.UpdateEntity;
+import com.sample.entity.UpdateEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

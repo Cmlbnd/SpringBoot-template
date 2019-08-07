@@ -1,4 +1,4 @@
-package com.sample.entity.queue;
+package com.sample.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -8,12 +8,12 @@ import java.io.Serializable;
 
 public class UpdateEntity implements Serializable {
 
-  private long driverId;
+  private long id;
   private String payload;
 
   @JsonProperty("id")
   public long getId() {
-    return driverId;
+    return id;
   }
 
   public void setId(long Id) {
